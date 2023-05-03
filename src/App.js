@@ -8,6 +8,9 @@ function App() {
   const [from, setFrom] = useState("en");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const translate = () => {
+
+  }
 
   useEffect(() => {
     axios.get('https://libretranslate.de/languages',
@@ -24,17 +27,21 @@ function App() {
         <select value={from} onChange={e => setFrom(e.target.value)}>
           {options.map(opt => <option key={opt.code} value={opt.code}> {opt.name} </option>)}
         </select>
-        To ({to}):
+
+        To : ({to}):
         <select value={to} onChange={e => setTo(e.target.value)}>
           {options.map(opt => <option key={opt.code} value={opt.code}> {opt.name} </option>)}
         </select>
       </div>
+
       <div>
-        <textarea value={input} onChange={e => setInput(e.target.value)} cols="50" rows="8"></textarea>
+        <textarea value={input} onChange={e => setInput(e.target.value)} cols="50" rows="5"></textarea>
       </div>
+
       <div>
-        <textarea value={output} readOnly cols="50" rows="8"></textarea>
+        <textarea value={output} readOnly cols="50" rows="5"></textarea>
       </div>
+
       <div>
         <button onClick={() => {
           axios.post('https://libretranslate.de/translate', {
